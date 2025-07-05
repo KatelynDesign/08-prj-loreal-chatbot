@@ -46,6 +46,44 @@ body {
   white-space: pre-line;
 }
 
+/* chat bubbles for messages */
+.user-msg {
+  background: #1976d2;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 20px 20px 4px 20px;
+  max-width: 70%;
+  margin: 10px 0 10px auto;
+  text-align: left;
+  display: block;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.08);
+  word-break: break-word;
+}
+
+.bot-msg {
+  background: #f1f0f0;
+  color: #222;
+  padding: 12px 18px;
+  border-radius: 20px 20px 20px 4px;
+  max-width: 70%;
+  margin: 10px auto 10px 0;
+  text-align: left;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  word-break: break-word;
+}
+
+.bot-msg.thinking {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.bot-msg.error {
+  background: #ffeaea;
+  color: #b00020;
+  border: 1px solid #b00020;
+}
+
 /* messages */
 .msg {
   margin-bottom: 14px;

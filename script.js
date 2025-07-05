@@ -9,7 +9,8 @@ chatWindow.textContent = "👋 Hello! How can I help you today?";
 // Track if it's the first user message
 let isFirstMessage = true;
 
-// Store the full chat history for context awareness
+// Store the full chat history for context awareness, including the system prompt.
+// The system prompt is always included in every API call, so the chatbot follows the rules for every question.
 const chatHistory = [
   {
     role: "system",
@@ -101,7 +102,8 @@ async function getChatCompletion(userMessage) {
   // Add the user's message to the chat history
   chatHistory.push({ role: "user", content: userMessage });
 
-  // Make the API request with the full chat history for context
+  // Always send the full chatHistory (including the system prompt) to OpenAI,
+  // so the chatbot follows the prompt for every question and remembers context.
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -110,7 +112,7 @@ async function getChatCompletion(userMessage) {
     },
     body: JSON.stringify({
       model: "gpt-4o", // Use the gpt-4o model
-      messages: chatHistory,
+      messages: chatHistory, // This includes the system prompt and all previous messages
       temperature: 0.6,
     }),
   });
