@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Lora:wght@700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -19,7 +19,14 @@
     <div class="page-wrapper">
       <!------- Header / Branding ------->
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <!-- Make the L'Oréal logo bigger by increasing max-width -->
+        <img
+          src="img/loreal-logo.png"
+          alt="L'Oréal Logo"
+          style="max-width: 260px; margin-bottom: 18px"
+        />
+
+        <h1 class="site-title">Smart Routine and Product Advisor</h1>
       </header>
 
       <!------- Chat Area ------->
@@ -31,14 +38,9 @@
 
           <form id="chatForm" class="chat-form">
             <label for="userInput" class="visually-hidden">Message</label>
-            <input
-              id="userInput"
-              name="userInput"
-              type="text"
-              placeholder="Ask me about products or routines…"
-              autocomplete="off"
-              required
-            />
+            <input id="userInput" name="userInput" type="text" placeholder="Ask
+            me about any L'Oréal product or routine"" autocomplete="off"
+            required />
             <button type="submit" id="sendBtn">
               <span class="material-icons">send</span>
               <span class="visually-hidden">Send</span>
@@ -49,7 +51,7 @@
 
       <!------- Footer Links ------->
       <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
+        <p>&copy; 2025 L'ORÉAL. All rights reserved.</p>
         <nav>
           <!-- These URLs are placeholders -->
           <a href="#">Privacy Policy</a>
