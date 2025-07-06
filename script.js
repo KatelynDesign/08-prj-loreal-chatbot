@@ -102,20 +102,23 @@ async function getChatCompletion(userMessage) {
   // Add the user's message to the chat history
   chatHistory.push({ role: "user", content: userMessage });
 
-  // Always send the full chatHistory (including the system prompt) to OpenAI,
-  // so the chatbot follows the prompt for every question and remembers context.
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`, // Use the OPENAI_API_KEY from secrets.js
-    },
-    body: JSON.stringify({
-      model: "gpt-4o", // Use the gpt-4o model
-      messages: chatHistory, // This includes the system prompt and all previous messages
-      temperature: 0.6,
-    }),
-  });
+  // Use the Cloudflare Worker endpoint to keep your API key secure.
+  // The Worker will forward the request to OpenAI and add the API key on the server side.
+  const response = await fetch(
+    "https://loralchatbot-worker.cq0232.workers.dev/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // No Authorization header here; the Worker handles the API key
+      },
+      body: JSON.stringify({
+        model: "gpt-4o", // Use the gpt-4o model
+        messages: chatHistory, // This includes the system prompt and all previous messages
+        temperature: 0.6,
+      }),
+    }
+  );
 
   // Check if the response is OK
   if (!response.ok) {
